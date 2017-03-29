@@ -21,7 +21,7 @@
   }],
   "contributor": [],
   "resources": [{
-    "path": "data/data.csv",
+    "path": "data/student_enrollment_gender_2008-2016.csv",
     "format": "csv",
     "schema": {
       "fields": [{
@@ -39,11 +39,32 @@
         }, {
           "name": "Measure Type",
           "type": "string",
-          "dimension": true
+          "dimension": true, 
+          "constraints": {
+			      "enum": [
+		        "Number"
+		        ]
+			    }          
         }, {
           "name": "Variable",
           "type": "string",
-          "dimension": true
+          "dimension": true, 
+          "constraints": {
+		        "enum": [
+              "Student Enrollment"
+            ]
+			    }          
+        }, 
+        {
+          "name": "Gender",
+          "type": "string",
+          "dimension": true, 
+            "constraints": {
+		        "enum": [
+		          "Female", 
+		          "Male"
+            ]
+			    }			    
         }, {
           "name": "Value",
           "type": "number",
@@ -71,12 +92,12 @@
     },
     "socrata": {
       "ckan_name": "Socrata",
-      "value": "False",,
+      "value": "False",
       "type": "string"
     },
     "socrata_url": {
       "ckan_name": "Socrata Dataset URL",
-      "value": "",,
+      "value": "",
       "type": "string"
     },
     "domain": {
@@ -102,7 +123,7 @@
     },
     "years_in_catalog": {
       "ckan_name": "Years in Catalog",
-      "value": [],
+      "value": ["2007-2008", "2008-2009", "2009-2010", "2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017"],
       "type": "array"
     },
     "latest_year": {
@@ -123,11 +144,106 @@
         "Percent": "%"
       }
     },
-    "default": {}
+    "expected_number_of_geographies": {
+		  "ckan_name": "Expected Number of Unique Geographies",
+		  "value": 205,
+		  "type": "string"
+		}, 
+    "default": {      
+      "ckan_name": "Default",
+			"value": {
+				"Measure Type": "Number",
+		 		"District": "Achievement First Bridgeport Academy District",
+		 		"Year": ["2007-2008"],
+		 		"Gender": "Female",
+		 		"Variable": "Student Enrollment"
+			},
+		  	"type": "object"
+    }  
   },
-  "spot_checks": [],
+  "spot_checks": [
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "Chester School District",
+        "Year": "2007-2008", 
+        "Variable": "Student Enrollment",
+        "Gender": "Female",
+        "Measure Type": "Number" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 175
+      } 
+    },      
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "Hartland School District",
+        "Year": "2009-2010", 
+        "Variable": "Student Enrollment",
+        "Gender": "Male",
+        "Measure Type": "Number" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 119
+      } 
+    }, 
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "Oxford School District",
+        "Year": "2011-2012",
+        "Variable": "Student Enrollment",
+        "Gender": "Female",
+        "Measure Type": "Number" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 1077
+      } 
+    },
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "South Windsor School District",
+        "Year": "2013-2014",
+        "Variable": "Student Enrollment",
+        "Gender": "Male",
+        "Measure Type": "Number" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 2218
+      } 
+    },    
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "Woodstock School District",
+        "Year": "2015-2016",
+        "Variable": "Student Enrollment",
+        "Gender": "Female",
+        "Measure Type": "Number" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 438
+      } 
+    }  
+],
   "dimension_groups": [
-    {"Measure Type": []},
-    {"Variable": []}
+    {
+      "Gender": [
+        "Female", 
+        "Male"        
+      ]
+    }
   ]
 }
