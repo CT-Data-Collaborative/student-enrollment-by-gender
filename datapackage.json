@@ -2,7 +2,7 @@
   "name": "student-enrollment-by-gender",
   "datapackage_version": "1.0-beta.18",
   "title": "Student Enrollment by Gender",
-  "description": "Student Enrollment reports the number of enrolled students per year, per subgroup.",
+  "description": "Student Enrollment reports the number of enrolled students per year, per gender.",
   "version": "1.0",
   "licenses": [{
     "url": "http://opendatacommons.org/licenses/pddl/",
