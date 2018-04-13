@@ -1,8 +1,6 @@
 Student-Enrollment-by-Gender
 
-[![Build Status](https://travis-ci.org/CT-Data-Collaborative/student-enrollment-by-gender.svg?branch=master)](https://travis-ci.org/CT-Data-Collaborative/student-enrollment-by-gender)
-
-Student Enrollment reports the number of enrolled students per year, per subgroup.
+Student Enrollment reports the number of enrolled students per year, per gender.
 
 Data Source: <http://edsight.ct.gov/>
 
